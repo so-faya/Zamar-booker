@@ -342,15 +342,16 @@ export default function App() {
           </button>
 
           <div className="nav__links">
-            {[["Menu", menuRef], ["Order", orderRef]].map(([label, ref]) => (
+            {[["HOME", topRef], ["MENU", menuRef], ["ABOUT", orderRef], ["ORDER", orderRef]].map(([label, ref]) => (
               <button key={label} className="nav__link" onClick={() => scrollTo(ref)}>
                 {label}
               </button>
             ))}
-            <button className="nav__cta" onClick={() => scrollTo(orderRef)}>
-              Order Now
-            </button>
           </div>
+
+          <button className="nav__cta" onClick={() => scrollTo(orderRef)}>
+            ORDER NOW
+          </button>
 
           <button
             className="nav__mobile-btn"
@@ -362,7 +363,7 @@ export default function App() {
 
         {mobileOpen && (
           <div className="nav__mobile-menu">
-            {[["Menu", menuRef], ["Order Now", orderRef]].map(([label, ref]) => (
+            {[["HOME", topRef], ["MENU", menuRef], ["ABOUT", orderRef], ["ORDER", orderRef], ["ORDER NOW", orderRef]].map(([label, ref]) => (
               <button key={label} className="nav__mobile-item" onClick={() => scrollTo(ref)}>
                 {label}
               </button>
@@ -373,65 +374,47 @@ export default function App() {
 
       {/* ── HERO ── */}
       <section ref={topRef} className="hero">
-        {HERO_ORBS.map((orb, i) => (
-          <div
-            key={i}
-            className="hero__orb"
-            style={{
-              width: orb.w, height: orb.h,
-              background: orb.bg,
-              opacity: orb.opacity,
-              animation: orb.animation,
-              ...orb.style,
-            }}
-          />
-        ))}
-        <div className="hero__grid" />
+        {/* Cinematic dark overlay */}
+        <div className="hero__bg-overlay" />
+        <div className="hero__vignette" />
+
+        {/* Vertical SCROLL label */}
+        <div className="hero__scroll-label">
+          <div className="hero__scroll-line" />
+          <span>SCROLL</span>
+        </div>
+
+        {/* Center pulse dot */}
+        <div className="hero__center-dot">
+          <div className="hero__center-dot-inner" />
+        </div>
 
         <div className="hero__content">
-          <div className="hero__logo-wrap">
-            <img
-              src={LOGO_URL} alt="Zamar Healthy Foods"
-              className="hero__logo"
-              onError={e => e.target.style.display = "none"}
-            />
-          </div>
-
-          <div className="hero__badge">
-            <span className="hero__badge-dot" />
-            <span className="hero__badge-text">Fresh · Wholesome · Authentic Nigerian</span>
+          <div className="hero__eyebrow">
+            <div className="hero__eyebrow-dash" />
+            <span className="hero__eyebrow-text">FRESH · NATURAL · DELICIOUS</span>
           </div>
 
           <h1 className="hero__title">
-            Real Food,<br />
-            <span className="hero__title-gradient">Real Nourishment</span>
+            Signature<br />
+            <em className="hero__title-italic">Meals &amp;</em><br />
+            <em className="hero__title-italic">Juices</em>
           </h1>
 
           <p className="hero__sub">
-            Authentic Nigerian meals, fresh-pressed juices & power-packed smoothies —
-            crafted with love and premium ingredients, delivered to your door.
+            Authentic Nigerian flavors, vibrant fresh juices, and nourishing
+            smoothies — crafted with love and served with pride.
           </p>
 
           <div className="hero__cta-row">
-            <button className="hero__btn-primary" onClick={() => scrollTo(orderRef)}>
-              🛒 Order Now
+            <button className="hero__btn-primary" onClick={() => scrollTo(menuRef)}>
+              EXPLORE MEALS
             </button>
             <button className="hero__btn-secondary" onClick={() => scrollTo(menuRef)}>
-              Browse Menu
+              FRESH JUICES
             </button>
           </div>
-
-          <div className="hero__stats">
-            {HERO_STATS.map(({ value, label }) => (
-              <div key={label} style={{ textAlign: "center" }}>
-                <div className="hero__stat-value">{value}</div>
-                <div className="hero__stat-label">{label}</div>
-              </div>
-            ))}
-          </div>
         </div>
-
-        <div className="hero__scroll">↓</div>
       </section>
 
       {/* ── MENU ── */}
