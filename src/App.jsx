@@ -178,17 +178,8 @@ function MenuCard({ item, selected, onToggle, delay = 0 }) {
       ref={ref}
       className={`menu-card ${visible ? "menu-card--visible" : "menu-card--hidden"}`}
       style={{
-        background: selected
-          ? `linear-gradient(160deg, ${item.color}15, ${item.color}28)`
-          : "rgba(255,255,255,0.025)",
-        border: `2px solid ${selected ? item.color : hovered ? item.color + "55" : "rgba(255,255,255,0.06)"}`,
-        transform: visible
-          ? hovered ? "translateY(-8px) scale(1.02)" : "translateY(0)"
-          : "translateY(35px)",
-        boxShadow: selected
-          ? `0 16px 48px ${item.color}35`
-          : hovered ? `0 10px 36px ${item.color}20` : "none",
         transitionDelay: `${delay}ms`,
+        borderColor: selected ? `${item.color}55` : undefined,
       }}
       onClick={() => onToggle(item)}
       onMouseEnter={() => setHovered(true)}
@@ -225,8 +216,12 @@ function MenuCard({ item, selected, onToggle, delay = 0 }) {
         <div className="menu-card__price-badge">{item.price}</div>
       </div>
 
+      {/* Body */}
       <div className="menu-card__body">
-        <div className="menu-card__name">{item.name}</div>
+        <div className="menu-card__name-row">
+          <div className="menu-card__name">{item.name}</div>
+          <div className="menu-card__price">{item.price}</div>
+        </div>
         <div className="menu-card__desc">{item.desc}</div>
         <div className="menu-card__footer">
           <span className="menu-card__category" style={{ color: item.color }}>
@@ -735,7 +730,7 @@ export default function App() {
             <div>
               <h4 className="footer__heading">Contact</h4>
               {[
-                ["📧", "zamarhealthyfoods@gmail.com", null],
+                ["📧", "zamarmeals@gmail.com", null],
                 ["📍", "Lagos, Nigeria", null],
                 ["🕘", "Mon – Sat: 8:00 AM – 8:00 PM", null],
                 ["💬", "+234 813 432 5676", WHATSAPP_URL],
@@ -765,9 +760,9 @@ export default function App() {
           </div>
           <div className="footer__bottom">
             <span className="footer__copy">
-              © {new Date().getFullYear()} Zamar Healthy Foods. All rights reserved.
+              © {new Date().getFullYear()} Zamar Meals Healthy Foods. All rights reserved.
             </span>
-            <span className="footer__made">Made with ❤️ in Lagos, Nigeria</span>
+            <span className="footer__made">Made with ❤️ </span>
           </div>
         </div>
       </footer>
