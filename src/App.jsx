@@ -20,6 +20,10 @@ function useInView(threshold = 0.1) {
   return [ref, visible];
 }
 
+// ── WHATSAPP ──────────────────────────────────────────────────────────────────
+const WHATSAPP_NUMBER = "2348134325676";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20Zamar%20Healthy%20Foods!%20I%20would%20like%20to%20place%20an%20order.`;
+
 // ── SVG SOCIAL ICONS ──────────────────────────────────────────────────────────
 const SOCIAL_ICONS = [
   {
@@ -40,6 +44,7 @@ const SOCIAL_ICONS = [
   },
   {
     label: "WhatsApp",
+    href: WHATSAPP_URL,
     svg: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
@@ -57,11 +62,10 @@ const SOCIAL_ICONS = [
 ];
 
 // ── PAYMENT ACCOUNT DETAILS ───────────────────────────────────────────────────
-// ── PAYMENT ACCOUNT DETAILS ───────────────────────────────────────────────────
 const PAYMENT_INFO = {
   bankName:      "Opay",
-  accountNumber: "9012345678",        // ← replace with your real account number
-  accountName:   "Zamar Meals Healthy Foods",
+  accountNumber: "9012345678",       // ← replace with your real account number
+  accountName:   "Zamar Healthy Foods",
 };
 
 // ── ORDER SUMMARY + PAYMENT BOX ───────────────────────────────────────────────
@@ -83,59 +87,87 @@ function OrderSummary({ selected }) {
   if (selected.length === 0) return null;
 
   return (
-    <div className="order-summary">
-      <p className="order-summary__eyebrow">Order Summary</p>
-
-      <div className="order-summary__items">
+    <div style={{
+      background: "rgba(255,255,255,0.03)",
+      border: "1.5px solid rgba(255,255,255,0.08)",
+      borderRadius: "16px",
+      padding: "20px 24px",
+      marginBottom: "24px",
+    }}>
+      {/* Order breakdown */}
+      <p style={{ color: "#FF6B00", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.1em", marginBottom: "12px", textTransform: "uppercase" }}>
+        Order Summary
+      </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "14px" }}>
         {selected.map(item => (
-          <div key={item.id} className="order-summary__item">
+          <div key={item.id} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", color: "rgba(255,255,255,0.75)" }}>
             <span>{item.name}</span>
-            <span className="order-summary__item-price" style={{ color: item.color }}>
-              {item.price}
-            </span>
+            <span style={{ color: item.color, fontWeight: 600 }}>{item.price}</span>
           </div>
         ))}
       </div>
 
-      <div className="order-summary__total-row">
-        <span className="order-summary__total-label">Total</span>
-        <span className="order-summary__total-amount">₦{total.toLocaleString()}</span>
+      {/* Divider */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "12px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+        <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.85rem" }}>Total</span>
+        <span style={{ color: "#FF6B00", fontWeight: 800, fontSize: "1.25rem" }}>
+          ₦{total.toLocaleString()}
+        </span>
       </div>
 
-      <div className="payment-box">
-        <p className="payment-box__eyebrow">💳 Payment Details</p>
-        <div className="payment-box__rows">
-          <div className="payment-box__row">
-            <span className="payment-box__key">Bank</span>
-            <span className="payment-box__val">{PAYMENT_INFO.bankName}</span>
+      {/* Payment details */}
+      <div style={{
+        background: "linear-gradient(135deg, rgba(39,174,96,0.12), rgba(39,174,96,0.06))",
+        border: "1.5px solid rgba(39,174,96,0.25)",
+        borderRadius: "12px",
+        padding: "16px 18px",
+      }}>
+        <p style={{ color: "#27AE60", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "12px" }}>
+          💳 Payment Details
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "6px", fontSize: "0.88rem" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ color: "rgba(255,255,255,0.45)" }}>Bank</span>
+            <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 600 }}>{PAYMENT_INFO.bankName}</span>
           </div>
-          <div className="payment-box__row">
-            <span className="payment-box__key">Account No.</span>
-            <div className="payment-box__acct-wrap">
-              <span className="payment-box__acct-num">{PAYMENT_INFO.accountNumber}</span>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ color: "rgba(255,255,255,0.45)" }}>Account No.</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ color: "#fff", fontWeight: 700, fontSize: "1rem", letterSpacing: "0.05em" }}>
+                {PAYMENT_INFO.accountNumber}
+              </span>
               <button
                 type="button"
                 onClick={handleCopy}
-                className={`payment-box__copy-btn ${copied ? "payment-box__copy-btn--copied" : "payment-box__copy-btn--idle"}`}
+                style={{
+                  background: copied ? "rgba(39,174,96,0.3)" : "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  borderRadius: "6px",
+                  color: copied ? "#27AE60" : "rgba(255,255,255,0.6)",
+                  cursor: "pointer",
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
+                  padding: "3px 8px",
+                  transition: "all 0.2s",
+                }}
               >
                 {copied ? "✓ Copied!" : "Copy"}
               </button>
             </div>
           </div>
-          <div className="payment-box__row">
-            <span className="payment-box__key">Account Name</span>
-            <span className="payment-box__val">{PAYMENT_INFO.accountName}</span>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ color: "rgba(255,255,255,0.45)" }}>Account Name</span>
+            <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 600 }}>{PAYMENT_INFO.accountName}</span>
           </div>
         </div>
-        <p className="payment-box__note">
-          Please transfer <strong>₦{total.toLocaleString()}</strong> and send your
-          payment receipt after placing your order. Your order will be confirmed
-          once payment is received.
+        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.75rem", marginTop: "12px", lineHeight: 1.5 }}>
+          Please transfer <strong style={{ color: "#FF6B00" }}>₦{total.toLocaleString()}</strong> and send your payment receipt after placing your order. Your order will be confirmed once payment is received.
         </p>
       </div>
     </div>
   );
 }
+
 // ── MENU CARD ─────────────────────────────────────────────────────────────────
 function MenuCard({ item, selected, onToggle, delay = 0 }) {
   const [ref, visible] = useInView();
@@ -703,21 +735,30 @@ export default function App() {
             <div>
               <h4 className="footer__heading">Contact</h4>
               {[
-                ["📧", "zamarhealthyfoods@gmail.com"],
-                ["📍", "Lagos, Nigeria"],
-                ["🕘", "Mon – Sat: 8:00 AM – 8:00 PM"],
-              ].map(([icon, val]) => (
+                ["📧", "zamarhealthyfoods@gmail.com", null],
+                ["📍", "Lagos, Nigeria", null],
+                ["🕘", "Mon – Sat: 8:00 AM – 8:00 PM", null],
+                ["💬", "+234 813 432 5676", WHATSAPP_URL],
+              ].map(([icon, val, href]) => (
                 <div key={val} className="footer__contact-item">
                   <span style={{ fontSize: "1rem", flexShrink: 0 }}>{icon}</span>
-                  <span>{val}</span>
+                  {href ? (
+                    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: "#25D366", textDecoration: "none", fontWeight: 700 }}>{val}</a>
+                  ) : (
+                    <span>{val}</span>
+                  )}
                 </div>
               ))}
             </div>
             <div>
               <h4 className="footer__heading">Follow Us</h4>
               <div className="footer__social-row">
-                {SOCIAL_ICONS.map(({ label, svg }) => (
-                  <button key={label} className="social-btn" title={label}>{svg}</button>
+                {SOCIAL_ICONS.map(({ label, svg, href }) => (
+                  href ? (
+                    <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="social-btn" title={label}>{svg}</a>
+                  ) : (
+                    <button key={label} className="social-btn" title={label}>{svg}</button>
+                  )
                 ))}
               </div>
             </div>
@@ -730,6 +771,21 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* ── FLOATING WHATSAPP BUTTON ── */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whatsapp-float"
+        title="Chat with us on WhatsApp"
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        <span className="whatsapp-float__label">Chat with us</span>
+      </a>
+
     </div>
   );
 }

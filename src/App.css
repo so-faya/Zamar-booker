@@ -798,6 +798,44 @@ select option { background: #181818; color: #fff; }
 .footer__made { color: rgba(255,255,255,0.1);  font-size: 0.74rem; font-family: 'Syne', sans-serif; }
 
 /* ─────────────────────────────────────────────────────────────────────────────
+   FLOATING WHATSAPP BUTTON
+───────────────────────────────────────────────────────────────────────────── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 50px;
+  padding: 14px 20px 14px 16px;
+  text-decoration: none;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  box-shadow: 0 8px 32px rgba(37,211,102,0.45);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease 1s both;
+}
+.whatsapp-float:hover {
+  background: #20ba5a;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(37,211,102,0.6);
+}
+.whatsapp-float__label {
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 480px) {
+  .whatsapp-float { padding: 14px; border-radius: 50%; }
+  .whatsapp-float__label { display: none; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
