@@ -19,7 +19,7 @@ function useInView(threshold = 0.1) {
   }, [threshold]);
   return [ref, visible];
 }
-// const EmailSpare =
+
 // ── SVG SOCIAL ICONS ──────────────────────────────────────────────────────────
 const SOCIAL_ICONS = [
   {
@@ -56,6 +56,86 @@ const SOCIAL_ICONS = [
   },
 ];
 
+// ── PAYMENT ACCOUNT DETAILS ───────────────────────────────────────────────────
+// ── PAYMENT ACCOUNT DETAILS ───────────────────────────────────────────────────
+const PAYMENT_INFO = {
+  bankName:      "Opay",
+  accountNumber: "9012345678",        // ← replace with your real account number
+  accountName:   "Zamar Meals Healthy Foods",
+};
+
+// ── ORDER SUMMARY + PAYMENT BOX ───────────────────────────────────────────────
+function OrderSummary({ selected }) {
+  const [copied, setCopied] = useState(false);
+
+  const total = selected.reduce((sum, item) => {
+    const num = parseInt(item.price.replace(/[^\d]/g, ""), 10);
+    return sum + (isNaN(num) ? 0 : num);
+  }, 0);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(PAYMENT_INFO.accountNumber).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  if (selected.length === 0) return null;
+
+  return (
+    <div className="order-summary">
+      <p className="order-summary__eyebrow">Order Summary</p>
+
+      <div className="order-summary__items">
+        {selected.map(item => (
+          <div key={item.id} className="order-summary__item">
+            <span>{item.name}</span>
+            <span className="order-summary__item-price" style={{ color: item.color }}>
+              {item.price}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="order-summary__total-row">
+        <span className="order-summary__total-label">Total</span>
+        <span className="order-summary__total-amount">₦{total.toLocaleString()}</span>
+      </div>
+
+      <div className="payment-box">
+        <p className="payment-box__eyebrow">💳 Payment Details</p>
+        <div className="payment-box__rows">
+          <div className="payment-box__row">
+            <span className="payment-box__key">Bank</span>
+            <span className="payment-box__val">{PAYMENT_INFO.bankName}</span>
+          </div>
+          <div className="payment-box__row">
+            <span className="payment-box__key">Account No.</span>
+            <div className="payment-box__acct-wrap">
+              <span className="payment-box__acct-num">{PAYMENT_INFO.accountNumber}</span>
+              <button
+                type="button"
+                onClick={handleCopy}
+                className={`payment-box__copy-btn ${copied ? "payment-box__copy-btn--copied" : "payment-box__copy-btn--idle"}`}
+              >
+                {copied ? "✓ Copied!" : "Copy"}
+              </button>
+            </div>
+          </div>
+          <div className="payment-box__row">
+            <span className="payment-box__key">Account Name</span>
+            <span className="payment-box__val">{PAYMENT_INFO.accountName}</span>
+          </div>
+        </div>
+        <p className="payment-box__note">
+          Please transfer <strong>₦{total.toLocaleString()}</strong> and send your
+          payment receipt after placing your order. Your order will be confirmed
+          once payment is received.
+        </p>
+      </div>
+    </div>
+  );
+}
 // ── MENU CARD ─────────────────────────────────────────────────────────────────
 function MenuCard({ item, selected, onToggle, delay = 0 }) {
   const [ref, visible] = useInView();
@@ -82,7 +162,6 @@ function MenuCard({ item, selected, onToggle, delay = 0 }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Image */}
       <div className="menu-card__img-wrap">
         <img
           src={item.img}
@@ -96,10 +175,7 @@ function MenuCard({ item, selected, onToggle, delay = 0 }) {
         />
         <div className="menu-card__overlay" />
         {item.tag && (
-          <span
-            className="menu-card__tag"
-            style={{ background: `${item.color}dd` }}
-          >
+          <span className="menu-card__tag" style={{ background: `${item.color}dd` }}>
             {item.tag}
           </span>
         )}
@@ -117,7 +193,6 @@ function MenuCard({ item, selected, onToggle, delay = 0 }) {
         <div className="menu-card__price-badge">{item.price}</div>
       </div>
 
-      {/* Body */}
       <div className="menu-card__body">
         <div className="menu-card__name">{item.name}</div>
         <div className="menu-card__desc">{item.desc}</div>
@@ -146,17 +221,12 @@ function SectionTitle({ children, sub, accent = "#FF6B00" }) {
       className={`section-title ${visible ? "section-title--visible" : "section-title--hidden"}`}
     >
       {sub && (
-        <p className="section-title__eyebrow" style={{ color: accent }}>
-          {sub}
-        </p>
+        <p className="section-title__eyebrow" style={{ color: accent }}>{sub}</p>
       )}
       <h2 className="section-title__h2">{children}</h2>
       <div className="section-title__rule" style={{ "--accent": accent }}>
         <div className="section-title__line-l" />
-        <div
-          className="section-title__dot"
-          style={{ background: accent, boxShadow: `0 0 10px ${accent}` }}
-        />
+        <div className="section-title__dot" style={{ background: accent, boxShadow: `0 0 10px ${accent}` }} />
         <div className="section-title__line-r" />
       </div>
     </div>
@@ -200,10 +270,10 @@ function SuccessScreen({ onReset }) {
       <h3 className="success__title">Order Received! 🎉</h3>
       <p className="success__body">
         Your order has been sent to{" "}
-        <strong style={{ color: "#FF6B00" }}>Zamar Healthy Foods</strong>. We will
+        <strong style={{ color: "#FF6B00" }}>Zamar Meals Healthy Foods</strong>. We will
         contact you shortly to confirm details and arrange delivery.
       </p>
-      <p className="success__email">📧 zamarhealthyfoods@gmail.com</p>
+      <p className="success__email">📧 zamarmeals@gmail.com</p>
       <button className="success__btn" onClick={onReset}>
         Place Another Order
       </button>
@@ -220,12 +290,12 @@ const HERO_ORBS = [
 
 // ── MAIN APP ──────────────────────────────────────────────────────────────────
 export default function App() {
-  const [menuTab, setMenuTab]     = useState("Food");
-  const [selected, setSelected]   = useState([]);
-  const [scrolled, setScrolled]   = useState(false);
+  const [menuTab, setMenuTab]       = useState("Food");
+  const [selected, setSelected]     = useState([]);
+  const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [submitStatus, setSubmit] = useState(null); // null | "sending" | "success"
-  const [errors, setErrors]       = useState({});
+  const [submitStatus, setSubmit]   = useState(null);
+  const [errors, setErrors]         = useState({});
   const [form, setForm] = useState({
     customerName: "", customerPhone: "", customerEmail: "",
     recipientName: "", recipientPhone: "",
@@ -236,7 +306,6 @@ export default function App() {
   const orderRef = useRef(null);
   const topRef   = useRef(null);
 
-  // scroll listener
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", fn);
@@ -258,11 +327,9 @@ export default function App() {
 
   const currentItems = ALL_ITEMS.filter(i => i.category === menuTab);
 
-  // ── input class helper ──
   const ic = (err) => `form-input${err ? " form-input--error" : ""}`;
   const sc = (err) => `form-select${err ? " form-select--error" : ""}`;
 
-  // ── validation ──
   const validate = () => {
     const e = {};
     if (!form.customerName.trim())    e.customerName    = "Required";
@@ -274,11 +341,15 @@ export default function App() {
     return Object.keys(e).length === 0;
   };
 
-  // ── submit ──
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
     setSubmit("sending");
+
+    const total = selected.reduce((sum, item) => {
+      const num = parseInt(item.price.replace(/[^\d]/g, ""), 10);
+      return sum + (isNaN(num) ? 0 : num);
+    }, 0);
 
     const orderText = selected
       .map(i => `• ${i.name} — ${i.price} (${i.category})`)
@@ -293,6 +364,7 @@ export default function App() {
       delivery_address:     form.deliveryAddress,
       delivery_area:        form.deliveryArea,
       order_items:          orderText,
+      order_total:          `₦${total.toLocaleString()}`,
       special_instructions: form.instructions || "None",
       to_email:             "zamarhealthyfoods@gmail.com",
     };
@@ -308,8 +380,11 @@ export default function App() {
         window.emailjs.init(EMAILJS_PUBLIC_KEY);
       }
       await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
-    } catch {
-      // fall through to success for demo — remove in production
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      alert("Something went wrong sending your order. Please call us directly.");
+      setSubmit(null);
+      return;
     }
 
     setSubmit("success");
@@ -324,7 +399,6 @@ export default function App() {
     });
   };
 
-  // ── field change helper ──
   const f = (key) => (e) => setForm(prev => ({ ...prev, [key]: e.target.value }));
 
   return (
@@ -353,10 +427,7 @@ export default function App() {
             ORDER NOW
           </button>
 
-          <button
-            className="nav__mobile-btn"
-            onClick={() => setMobileOpen(o => !o)}
-          >
+          <button className="nav__mobile-btn" onClick={() => setMobileOpen(o => !o)}>
             {mobileOpen ? "✕" : "☰"}
           </button>
         </div>
@@ -374,38 +445,29 @@ export default function App() {
 
       {/* ── HERO ── */}
       <section ref={topRef} className="hero">
-        {/* Cinematic dark overlay */}
         <div className="hero__bg-overlay" />
         <div className="hero__vignette" />
-
-        {/* Vertical SCROLL label */}
         <div className="hero__scroll-label">
           <div className="hero__scroll-line" />
           <span>SCROLL</span>
         </div>
-
-        {/* Center pulse dot */}
         <div className="hero__center-dot">
           <div className="hero__center-dot-inner" />
         </div>
-
         <div className="hero__content">
           <div className="hero__eyebrow">
             <div className="hero__eyebrow-dash" />
             <span className="hero__eyebrow-text">FRESH · NATURAL · DELICIOUS</span>
           </div>
-
           <h1 className="hero__title">
             Signature<br />
             <em className="hero__title-italic">Meals &amp;</em><br />
             <em className="hero__title-italic">Juices</em>
           </h1>
-
           <p className="hero__sub">
             Authentic Nigerian flavors, vibrant fresh juices, and nourishing
             smoothies — crafted with love and served with pride.
           </p>
-
           <div className="hero__cta-row">
             <button className="hero__btn-primary" onClick={() => scrollTo(menuRef)}>
               EXPLORE MEALS
@@ -459,10 +521,7 @@ export default function App() {
                     key={i.id}
                     className="cart-bar__chip"
                     onClick={() => toggleItem(i)}
-                    style={{
-                      background: `${i.color}1a`,
-                      border: `1px solid ${i.color}44`,
-                    }}
+                    style={{ background: `${i.color}1a`, border: `1px solid ${i.color}44` }}
                   >
                     {i.name} ×
                   </span>
@@ -519,10 +578,7 @@ export default function App() {
                         key={i.id}
                         className="selected-chip"
                         onClick={() => toggleItem(i)}
-                        style={{
-                          background: `${i.color}1a`,
-                          border: `1px solid ${i.color}44`,
-                        }}
+                        style={{ background: `${i.color}1a`, border: `1px solid ${i.color}44` }}
                       >
                         {i.name} <span className="selected-chip__x">×</span>
                       </span>
@@ -530,6 +586,9 @@ export default function App() {
                   </div>
                 )}
               </div>
+
+              {/* ── ORDER SUMMARY + PAYMENT ── */}
+              <OrderSummary selected={selected} />
 
               <Divider label="Your Contact" />
 
@@ -630,8 +689,6 @@ export default function App() {
       <footer className="footer">
         <div className="footer__inner">
           <div className="footer__grid">
-
-            {/* Brand */}
             <div>
               <img
                 src={LOGO_URL} alt="Zamar"
@@ -643,8 +700,6 @@ export default function App() {
                 drinks — made with love every day.
               </p>
             </div>
-
-            {/* Contact */}
             <div>
               <h4 className="footer__heading">Contact</h4>
               {[
@@ -658,20 +713,15 @@ export default function App() {
                 </div>
               ))}
             </div>
-
-            {/* Social */}
             <div>
               <h4 className="footer__heading">Follow Us</h4>
               <div className="footer__social-row">
                 {SOCIAL_ICONS.map(({ label, svg }) => (
-                  <button key={label} className="social-btn" title={label}>
-                    {svg}
-                  </button>
+                  <button key={label} className="social-btn" title={label}>{svg}</button>
                 ))}
               </div>
             </div>
           </div>
-
           <div className="footer__bottom">
             <span className="footer__copy">
               © {new Date().getFullYear()} Zamar Healthy Foods. All rights reserved.

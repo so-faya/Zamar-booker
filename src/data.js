@@ -59,7 +59,7 @@ export const LOGO_URL = logoImg;
 
 // ── EMAILJS ───────────────────────────────────────────────────────────────────
 export const EMAILJS_SERVICE_ID = "service_hzv1996";
-export const EMAILJS_TEMPLATE_ID = "template-vvo80au";
+export const EMAILJS_TEMPLATE_ID = "template_vvo80au";
 export const EMAILJS_PUBLIC_KEY = "ZC2cESYBKeBXABKuP";
 
 // ── MENU DATA ─────────────────────────────────────────────────────────────────
