@@ -19,7 +19,7 @@ function useInView(threshold = 0.1) {
   }, [threshold]);
   return [ref, visible];
 }
-
+// const EmailSpare =
 // ── SVG SOCIAL ICONS ──────────────────────────────────────────────────────────
 const SOCIAL_ICONS = [
   {

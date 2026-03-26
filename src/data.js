@@ -58,9 +58,9 @@ import logoImg from "./assets/zamar_logo.png";
 export const LOGO_URL = logoImg;
 
 // ── EMAILJS ───────────────────────────────────────────────────────────────────
-export const EMAILJS_SERVICE_ID = "your_service_id";
-export const EMAILJS_TEMPLATE_ID = "your_template_id";
-export const EMAILJS_PUBLIC_KEY = "your_public_key";
+export const EMAILJS_SERVICE_ID = "service_hzv1996";
+export const EMAILJS_TEMPLATE_ID = "template-vvo80au";
+export const EMAILJS_PUBLIC_KEY = "ZC2cESYBKeBXABKuP";
 
 // ── MENU DATA ─────────────────────────────────────────────────────────────────
 export const FOODS = [
