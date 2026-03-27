@@ -64,8 +64,8 @@ const SOCIAL_ICONS = [
 // ── PAYMENT ACCOUNT DETAILS ───────────────────────────────────────────────────
 const PAYMENT_INFO = {
   bankName:      "Opay",
-  accountNumber: "9012345678",       // ← replace with your real account number
-  accountName:   "Zamar Healthy Foods",
+  accountNumber: "8134325676",       
+  accountName:   "Bukola Folasade 'Keyede",
 };
 
 // ── ORDER SUMMARY + PAYMENT BOX ───────────────────────────────────────────────
@@ -488,7 +488,7 @@ export default function App() {
           </div>
           <h1 className="hero__title">
             Signature<br />
-            <em className="hero__title-italic">Meals &amp;</em><br />
+            <em className="hero__title-italic">Meals &amp;</em>
             <em className="hero__title-italic">Juices</em>
           </h1>
           <p className="hero__sub">
