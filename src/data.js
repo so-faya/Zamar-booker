@@ -4,6 +4,16 @@ import ofadaRice from "./assets/ofoda_rice.png";
 import yamPorridge from "./assets/yam_porridge.png";
 import beansPorridge from "./assets/beans_porridge.png";
 
+import pineappleJuice from "./assets/pineapplejuice.png";
+import watermelonJuice from "./assets/watermelonjuice.png";
+import tropicalSplashJuice from "./assets/tropicalsplashjuice.png";
+import tigernutjuice from "./assets/tigernutjuice.png";
+import freshDetoxJuice from "./assets/zamarfreshdetoxjuice.png";
+
+import mangoBliss from "./assets/mangosmoothie.png";
+import tropicalFusion from "./assets/Tropicalfusionsmootie.png";
+import parfait from "./assets/parfait.png";
+
 export const FOOD_IMAGES = {
   jollofRice,
   ofadaRice,
@@ -16,27 +26,19 @@ export const FOOD_IMAGES = {
 };
 
 // ── JUICE IMAGES ──────────────────────────────────────────────────────────────
+// Keys match exactly what JUICES array uses: .pineapple, .watermelon, etc.
 export const JUICE_IMAGES = {
-  pineapple:
-    "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&q=80",
-  watermelon:
-    "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&q=80",
-  orange:
-    "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=600&q=80",
-  bloodBuilder:
-    "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=600&q=80",
-  tropicalSplash:
-    "https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?w=600&q=80",
-  rubyVitality:
-    "https://images.unsplash.com/photo-1570696516188-ade861b84a49?w=600&q=80",
-  freshDetox:
-    "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=600&q=80",
+  pineapple:      pineappleJuice,
+  watermelon:     watermelonJuice,
+  orange:         "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&q=80",
+  bloodBuilder:   tropicalSplashJuice,
+  tropicalSplash: tigernutjuice,
+  freshDetox:     freshDetoxJuice,
 };
 
 // ── SMOOTHIE IMAGES ───────────────────────────────────────────────────────────
 export const SMOOTHIE_IMAGES = {
-  sunriseBoost:
-    "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&q=80",
+  parfait: parfait,
   creamyDelight:
     "https://images.unsplash.com/photo-1638176066666-ffb2f013c7dd?w=600&q=80",
   greenVitality:
@@ -45,12 +47,10 @@ export const SMOOTHIE_IMAGES = {
     "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=600&q=80",
   royalVitality:
     "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80",
-  mangoBliss:
-    "https://images.unsplash.com/photo-1546173159-315724a31696?w=600&q=80",
+  mangoBliss: mangoBliss,
   soursopSupreme:
     "https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=600&q=80",
-  tropicalFusion:
-    "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=600&q=80",
+  tropicalFusion: tropicalFusion,
 };
 
 // ── BRAND ─────────────────────────────────────────────────────────────────────
@@ -168,15 +168,6 @@ export const JUICES = [
   },
   {
     id: "j6",
-    name: "Zamar Rubby Vitality",
-    tag: "Signature",
-    price: "₦4,800",
-    desc: "Strawberry + Beetroot + Pineapple — packed with antioxidants.",
-    img: JUICE_IMAGES.rubyVitality,
-    color: "#8E44AD",
-  },
-  {
-    id: "j7",
     name: "Zamar Fresh Detox",
     tag: "Signature",
     price: "₦6,600",
@@ -192,7 +183,7 @@ export const SMOOTHIES = [
     name: "Mango Smoothie",
     price: "₦3,500",
     desc: "Fresh Mango — rich, creamy, tropical sweetness in every sip.",
-    img: SMOOTHIE_IMAGES.sunriseBoost,
+    img: SMOOTHIE_IMAGES.mangoBliss,
     color: "#E67E22",
   },
   {
@@ -200,7 +191,7 @@ export const SMOOTHIES = [
     name: "Tropical Fusion Smoothie",
     price: "₦3,500",
     desc: "Banana + Pawpaw + Pineapple + Beetroot — rich and creamy.",
-    img: SMOOTHIE_IMAGES.creamyDelight,
+    img: SMOOTHIE_IMAGES.tropicalFusion,
     color: "#F39C12",
   },
   {
@@ -216,7 +207,7 @@ export const SMOOTHIES = [
     name: "Parfait",
     price: "₦4,500",
     desc: "Strawberry + Banana + Orange — smooth, naturally energizing.",
-    img: SMOOTHIE_IMAGES.berryEnergy,
+    img: SMOOTHIE_IMAGES.parfait,
     color: "#E91E63",
   },
   {
@@ -246,7 +237,7 @@ export const SMOOTHIES = [
   {
     id: "s8",
     name: "Zamar Tropical Fusion",
-    price: "₦62,000",
+    price: "₦6,200",
     desc: "Mango + Pineapple — vibrant, vitamin-rich, every sip is paradise.",
     img: SMOOTHIE_IMAGES.tropicalFusion,
     color: "#FF6B00",
@@ -290,7 +281,7 @@ export const DELIVERY_AREAS = [
   "Kwali town",
   "Yangoji",
   "Pai",
-  "Kilankwa"  
+  "Kilankwa",
 ];
 
 // ── HERO STATS ────────────────────────────────────────────────────────────────
