@@ -22,7 +22,7 @@ function useInView(threshold = 0.1) {
 }
 
 // ── WHATSAPP ──────────────────────────────────────────────────────────────────
-const WHATSAPP_NUMBER = "2348134325676";
+const WHATSAPP_NUMBER = "2349011317722";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20Zamar%20Healthy%20Foods!%20I%20would%20like%20to%20place%20an%20order.`;
 
 // ── SVG SOCIAL ICONS ──────────────────────────────────────────────────────────
@@ -559,17 +559,58 @@ export default function App() {
           ))}
         </div>
 
-        <div className="card-grid">
-          {currentItems.map((item, i) => (
-            <MenuCard
-              key={item.id}
-              item={item}
-              delay={i * 45}
-              selected={!!selected.find(s => s.id === item.id)}
-              onToggle={toggleItem}
-            />
-          ))}
-        </div>
+        {currentItems.length === 0 ? (
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "72px 24px",
+            gap: "16px",
+            textAlign: "center",
+          }}>
+            <div style={{ fontSize: "3.5rem" }}>🥤</div>
+            <h3 style={{
+              color: "#FF6B00",
+              fontSize: "1.6rem",
+              fontWeight: 700,
+              margin: 0,
+            }}>Coming Soon!</h3>
+            <p style={{
+              color: "rgba(255,255,255,0.55)",
+              fontSize: "1rem",
+              maxWidth: "360px",
+              lineHeight: 1.7,
+              margin: 0,
+            }}>
+              Our fresh juices are being prepared with love. Check back soon — something delicious is on the way! 🍋🍊🍍
+            </p>
+            <div style={{
+              marginTop: "8px",
+              padding: "10px 28px",
+              border: "1.5px solid rgba(255,107,0,0.4)",
+              borderRadius: "999px",
+              color: "rgba(255,255,255,0.4)",
+              fontSize: "0.78rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+            }}>
+              Available Soon
+            </div>
+          </div>
+        ) : (
+          <div className="card-grid">
+            {currentItems.map((item, i) => (
+              <MenuCard
+                key={item.id}
+                item={item}
+                delay={i * 45}
+                selected={!!selected.find(s => s.id === item.id)}
+                onToggle={toggleItem}
+              />
+            ))}
+          </div>
+        )}
 
         {selected.length > 0 && (
           <div className="cart-bar">
@@ -771,7 +812,7 @@ export default function App() {
                 ["📧", "zamarmeals@gmail.com", null],
                 ["📍", "Lagos, Nigeria", null],
                 ["🕘", "Mon – Sat: 8:00 AM – 8:00 PM", null],
-                ["💬", "+234 813 432 5676", WHATSAPP_URL],
+                ["💬", "+234 901 131 7722", WHATSAPP_URL],
               ].map(([icon, val, href]) => (
                 <div key={val} className="footer__contact-item">
                   <span style={{ fontSize: "1rem", flexShrink: 0 }}>{icon}</span>
