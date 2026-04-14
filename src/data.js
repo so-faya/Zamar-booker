@@ -1,24 +1,39 @@
 // ── FOOD IMAGES (local assets) ────────────────────────────────────────────────
-import jollofRice from "./assets/executive_rice.png";
-import ofadaRice from "./assets/ofoda_rice.png";
-import yamPorridge from "./assets/yam_porridge.png";
-import beansPorridge from "./assets/beans_porridge.png";
+import jollofRice from "./assets/executive_rice.webp";
+import ofadaRice from "./assets/ofoda_rice.webp";
+import yamPorridge from "./assets/yam_porridge.webp";
+import beansPorridge from "./assets/beans_porridge.webp";
 
-import pineappleJuice from "./assets/pineapplejuice.png";
-import watermelonJuice from "./assets/watermelonjuice.png";
-import tropicalSplashJuice from "./assets/tropicalsplashjuice.png";
-import tigernutjuice from "./assets/tigernutjuice.png";
-import freshDetoxJuice from "./assets/zamarfreshdetoxjuice.png";
+// ── ZOETIC / ZAMAR MEALS IMAGES ───────────────────────────────────────────────
+import jollofRiceWithBeef from "./assets/jollof_rice_with_beef.webp";
+import jollofRiceWithChicken from "./assets/jollof_rice_with_chicken.webp";
+import friedRiceWithBeef from "./assets/fried_rice_with_beef.webp";
+import friedRiceWithChicken from "./assets/fried_rice_with_chicken.webp";
+import tiggernutChocolateVelvet from "./assets/tigernut_chocolate_velvet_milkshake.webp";
+import tigernutBanana from "./assets/tigernut_banana_milkshake.webp";
+import zoeticLogo from "./assets/zoetic_foods_drinks.webp";
 
-import mangoBliss from "./assets/mangosmoothie.png";
-import tropicalFusion from "./assets/Tropicalfusionsmootie.png";
-import parfait from "./assets/parfait.png";
+export { zoeticLogo };
+
+import pineappleJuice from "./assets/pineapplejuice.webp";
+import watermelonJuice from "./assets/watermelonjuice.webp";
+import tropicalSplashJuice from "./assets/tropicalsplashjuice.webp";
+import tigernutjuice from "./assets/tigernutjuice.webp";
+import freshDetoxJuice from "./assets/zamarfreshdetoxjuice.webp";
+
+import mangoBliss from "./assets/mangosmoothie.webp";
+import tropicalFusion from "./assets/Tropicalfusionsmootie.webp";
+import parfait from "./assets/parfait.webp";
 
 export const FOOD_IMAGES = {
   jollofRice,
   ofadaRice,
   yamPorridge,
   beansPorridge,
+  jollofRiceWithBeef,
+  jollofRiceWithChicken,
+  friedRiceWithBeef,
+  friedRiceWithChicken,
   friedRice:
     "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&q=80",
   healthyBowl:
@@ -34,6 +49,12 @@ export const JUICE_IMAGES = {
   bloodBuilder:   tropicalSplashJuice,
   tropicalSplash: tigernutjuice,
   freshDetox:     freshDetoxJuice,
+};
+
+// ── MILKSHAKE IMAGES ──────────────────────────────────────────────────────────
+export const MILKSHAKE_IMAGES = {
+  tigernutChocolateVelvet: tiggernutChocolateVelvet,
+  tigernutBanana:          tigernutBanana,
 };
 
 // ── SMOOTHIE IMAGES ───────────────────────────────────────────────────────────
@@ -54,7 +75,7 @@ export const SMOOTHIE_IMAGES = {
 };
 
 // ── BRAND ─────────────────────────────────────────────────────────────────────
-import logoImg from "./assets/zamar_logo.png";
+import logoImg from "./assets/zamar_logo.webp";
 export const LOGO_URL = logoImg;
 
 // ── EMAILJS ───────────────────────────────────────────────────────────────────
@@ -64,6 +85,44 @@ export const EMAILJS_PUBLIC_KEY = "ZC2cESYBKeBXABKuP";
 
 // ── MENU DATA ─────────────────────────────────────────────────────────────────
 export const FOODS = [
+  // ── ZAMAR MEALS (Zoetic Foods & Drinks) ──────────────────────────────────
+  {
+    id: "zm1",
+    name: "Jollof Rice with Chicken",
+    tag: "Zamar Meals · Smoky · Juicy",
+    price: "₦5,000",
+    desc: "Party-style smoky jollof rice paired with succulent grilled chicken, garnished with fresh herbs.",
+    img: FOOD_IMAGES.jollofRiceWithChicken,
+    color: "#FF6B00",
+  },
+  {
+    id: "zm2",
+    name: "Jollof Rice with Beef",
+    tag: "Zamar Meals · Rich · Hearty",
+    price: "₦5,500",
+    desc: "Aromatic smoky jollof rice loaded with tender seasoned beef chunks and vibrant peppers.",
+    img: FOOD_IMAGES.jollofRiceWithBeef,
+    color: "#E8B400",
+  },
+  {
+    id: "zm3",
+    name: "Fried Rice with Chicken",
+    tag: "Zamar Meals · Colorful · Delicious",
+    price: "₦5,500",
+    desc: "Flavorful fried rice stir-fried with fresh vegetables and topped with crispy golden chicken.",
+    img: FOOD_IMAGES.friedRiceWithChicken,
+    color: "#4CAF50",
+  },
+  {
+    id: "zm4",
+    name: "Fried Rice with Beef",
+    tag: "Zamar Meals · Bold · Satisfying",
+    price: "₦6,000",
+    desc: "Vibrant fried rice tossed with mixed vegetables and generous tender beef bites.",
+    img: FOOD_IMAGES.friedRiceWithBeef,
+    color: "#C0392B",
+  },
+  // ── ZAMAR CLASSIC MENU ────────────────────────────────────────────────────
   {
     id: "f1",
     name: "Executive Jollof Rice",
@@ -178,6 +237,26 @@ export const JUICES = [
 ];
 
 export const SMOOTHIES = [
+  // ── ZAMAR MEALS (Zoetic Foods & Drinks) ──────────────────────────────────
+  {
+    id: "zm5",
+    name: "Tigernut Banana Milkshake",
+    tag: "Zamar Meals",
+    price: "₦2,000",
+    desc: "Creamy tigernut blended with ripe banana — naturally sweet, dairy-free, and energizing.",
+    img: MILKSHAKE_IMAGES.tigernutBanana,
+    color: "#E8B400",
+  },
+  {
+    id: "zm6",
+    name: "Tigernut Chocolate Velvet Milkshake",
+    tag: "Zamar Meals · Signature",
+    price: "₦2,500",
+    desc: "Rich tigernut milk swirled with velvety chocolate for a luxurious, indulgent treat.",
+    img: MILKSHAKE_IMAGES.tigernutChocolateVelvet,
+    color: "#6D3F2F",
+  },
+  // ── ZAMAR CLASSIC SMOOTHIES ───────────────────────────────────────────────
   {
     id: "s1",
     name: "Mango Smoothie",
