@@ -504,7 +504,7 @@ export default function App() {
               EXPLORE MEALS
             </button>
             <button className="hero__btn-secondary" onClick={() => scrollTo(menuRef)}>
-              FRESH JUICES
+              Smoothies
             </button>
           </div>
         </div>
@@ -548,7 +548,7 @@ export default function App() {
         </SectionTitle>
 
         <div className="menu-tabs">
-          {[["Food", "🍽 Foods"], ["Juice", "🥤 Juices"], ["Smoothie", "🥤 Smoothies"]].map(([tab, label]) => (
+          {[["Food", "🍽 Foods"], ["Smoothie", "🥤 Tigernut Smoothies"], ["Juice", "🥤 Juices"]].map(([tab, label]) => (
             <button
               key={tab}
               className={`menu-tab ${menuTab === tab ? "menu-tab--active" : "menu-tab--inactive"}`}
