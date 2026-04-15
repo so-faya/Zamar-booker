@@ -23,7 +23,7 @@ function useInView(threshold = 0.1) {
 
 // ── WHATSAPP ──────────────────────────────────────────────────────────────────
 const WHATSAPP_NUMBER = "2349011317722";
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20Zamar%20Healthy%20Foods!%20I%20would%20like%20to%20place%20an%20order.`;
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20Zamar%20Signature%20Meals!%20I%20would%20like%20to%20place%20an%20order.`;
 
 // ── SVG SOCIAL ICONS ──────────────────────────────────────────────────────────
 const SOCIAL_ICONS = [
@@ -493,7 +493,7 @@ export default function App() {
           <h1 className="hero__title">
             Signature<br />
             <em className="hero__title-italic">Meals &amp;</em>
-            <em className="hero__title-italic">Juices</em>
+            <em className="hero__title-italic">Drinks</em>
           </h1>
           <p className="hero__sub">
             Authentic Nigerian flavors, vibrant fresh juices, and nourishing
@@ -537,7 +537,7 @@ export default function App() {
         }}>
           <strong style={{ color: "#FF6B00" }}>Zamar Meals</strong> is a brand of{" "}
           <strong style={{ color: "#fff" }}>Zoetic Foods &amp; Drinks</strong>
-          {" "}— taste · nourish · energize
+          {" "}— tasty · nourishing · energizing
         </p>
       </div>
 
