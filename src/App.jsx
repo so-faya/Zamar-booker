@@ -810,7 +810,7 @@ export default function App() {
               <h4 className="footer__heading">Contact</h4>
               {[
                 ["📧", "zamarmeals@gmail.com", null],
-                ["📍", "Lagos, Nigeria", null],
+                ["📍", "Abuja, Nigeria", null],
                 ["🕘", "Mon – Sat: 8:00 AM – 8:00 PM", null],
                 ["💬", "+234 901 131 7722", WHATSAPP_URL],
               ].map(([icon, val, href]) => (
