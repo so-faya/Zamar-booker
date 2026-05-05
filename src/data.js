@@ -7,6 +7,12 @@ import tiggernutChocolateVelvet from "./assets/tigernut_chocolate_velvet_milksha
 import tigernutBanana from "./assets/tigernut_banana_milkshake.webp";
 import zoeticLogo from "./assets/zoetic_foods_drinks.webp";
 
+// ── SOUP IMAGES ───────────────────────────────────────────────────────────────
+import vegetableSoup from "./assets/vegetable_soup.webp";
+import melonSoup from "./assets/melon_soup.webp";
+import achiSoup from "./assets/achi_soup.webp";
+import okroSoup from "./assets/okro_soup.webp";
+
 export { zoeticLogo };
 
 export const FOOD_IMAGES = {
@@ -14,6 +20,13 @@ export const FOOD_IMAGES = {
   jollofRiceWithChicken,
   friedRiceWithBeef,
   friedRiceWithChicken,
+};
+
+export const SOUP_IMAGES = {
+  vegetableSoup,
+  melonSoup,
+  achiSoup,
+  okroSoup,
 };
 
 // ── MILKSHAKE IMAGES ──────────────────────────────────────────────────────────
@@ -68,6 +81,79 @@ export const FOODS = [
     desc: "Vibrant fried rice tossed with mixed vegetables and generous tender beef bites.",
     img: FOOD_IMAGES.friedRiceWithBeef,
     color: "#C0392B",
+  },
+  // ── SOUPS ──────────────────────────────────────────────────────────────────
+  {
+    id: "zm7",
+    name: "Vegetable Soup + Eba",
+    tag: "Zamar Meals · Healthy · Traditional",
+    price: "₦8,500",
+    desc: "Fresh leafy vegetable soup slow-cooked with assorted meats and crayfish, served with smooth Eba.",
+    img: SOUP_IMAGES.vegetableSoup,
+    color: "#4CAF50",
+  },
+  {
+    id: "zm8",
+    name: "Vegetable Soup + Poundo/Semo",
+    tag: "Zamar Meals · Healthy · Traditional",
+    price: "₦9,500",
+    desc: "Fresh leafy vegetable soup slow-cooked with assorted meats and crayfish, served with Poundo or Semo.",
+    img: SOUP_IMAGES.vegetableSoup,
+    color: "#4CAF50",
+  },
+  {
+    id: "zm9",
+    name: "Melon Soup (Egusi) + Eba",
+    tag: "Zamar Meals · Rich · Classic",
+    price: "₦8,500",
+    desc: "Thick, hearty egusi soup cooked with palm oil, peppers, and assorted meats, served with smooth Eba.",
+    img: SOUP_IMAGES.melonSoup,
+    color: "#E8B400",
+  },
+  {
+    id: "zm10",
+    name: "Melon Soup (Egusi) + Poundo/Semo",
+    tag: "Zamar Meals · Rich · Classic",
+    price: "₦9,500",
+    desc: "Thick, hearty egusi soup cooked with palm oil, peppers, and assorted meats, served with Poundo or Semo.",
+    img: SOUP_IMAGES.melonSoup,
+    color: "#E8B400",
+  },
+  {
+    id: "zm11",
+    name: "Achi Soup + Eba",
+    tag: "Zamar Meals · Delicacy · Savory",
+    price: "₦8,500",
+    desc: "Flavourful Achi soup thickened to perfection with assorted meats and fish, served with smooth Eba.",
+    img: SOUP_IMAGES.achiSoup,
+    color: "#FF6B00",
+  },
+  {
+    id: "zm12",
+    name: "Achi Soup + Poundo/Semo",
+    tag: "Zamar Meals · Delicacy · Savory",
+    price: "₦9,500",
+    desc: "Flavourful Achi soup thickened to perfection with assorted meats and fish, served with Poundo or Semo.",
+    img: SOUP_IMAGES.achiSoup,
+    color: "#FF6B00",
+  },
+  {
+    id: "zm13",
+    name: "Okro Soup + Eba",
+    tag: "Zamar Meals · Nutritious · Bold",
+    price: "₦8,500",
+    desc: "Silky okro soup with prawns, assorted meats, and aromatic spices, served with smooth Eba.",
+    img: SOUP_IMAGES.okroSoup,
+    color: "#27AE60",
+  },
+  {
+    id: "zm14",
+    name: "Okro Soup + Poundo/Semo",
+    tag: "Zamar Meals · Nutritious · Bold",
+    price: "₦9,500",
+    desc: "Silky okro soup with prawns, assorted meats, and aromatic spices, served with Poundo or Semo.",
+    img: SOUP_IMAGES.okroSoup,
+    color: "#27AE60",
   },
 ];
 

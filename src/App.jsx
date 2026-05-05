@@ -68,7 +68,7 @@ const SOCIAL_ICONS = [
 // ── PAYMENT ACCOUNT DETAILS ───────────────────────────────────────────────────
 const PAYMENT_INFO = {
   bankName:      "Opay",
-  accountNumber: "8134325676",       
+  accountNumber: "8134325676",
   accountName:   "Bukola Folasade 'Keyede",
 };
 
@@ -91,81 +91,47 @@ function OrderSummary({ selected }) {
   if (selected.length === 0) return null;
 
   return (
-    <div style={{
-      background: "rgba(255,255,255,0.03)",
-      border: "1.5px solid rgba(255,255,255,0.08)",
-      borderRadius: "16px",
-      padding: "20px 24px",
-      marginBottom: "24px",
-    }}>
-      {/* Order breakdown */}
-      <p style={{ color: "#FF6B00", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.1em", marginBottom: "12px", textTransform: "uppercase" }}>
-        Order Summary
-      </p>
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "14px" }}>
+    <div className="order-summary">
+      <p className="order-summary__eyebrow">Order Summary</p>
+      <div className="order-summary__items">
         {selected.map(item => (
-          <div key={item.id} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", color: "rgba(255,255,255,0.75)" }}>
+          <div key={item.id} className="order-summary__item">
             <span>{item.name}</span>
-            <span style={{ color: item.color, fontWeight: 600 }}>{item.price}</span>
+            <span className="order-summary__item-price" style={{ color: item.color }}>{item.price}</span>
           </div>
         ))}
       </div>
-
-      {/* Divider */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "12px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-        <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.85rem" }}>Total</span>
-        <span style={{ color: "#FF6B00", fontWeight: 800, fontSize: "1.25rem" }}>
-          ₦{total.toLocaleString()}
-        </span>
+      <div className="order-summary__total-row">
+        <span className="order-summary__total-label">Total</span>
+        <span className="order-summary__total-amount">₦{total.toLocaleString()}</span>
       </div>
-
-      {/* Payment details */}
-      <div style={{
-        background: "linear-gradient(135deg, rgba(39,174,96,0.12), rgba(39,174,96,0.06))",
-        border: "1.5px solid rgba(39,174,96,0.25)",
-        borderRadius: "12px",
-        padding: "16px 18px",
-      }}>
-        <p style={{ color: "#27AE60", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "12px" }}>
-          💳 Payment Details
-        </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: "6px", fontSize: "0.88rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ color: "rgba(255,255,255,0.45)" }}>Bank</span>
-            <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 600 }}>{PAYMENT_INFO.bankName}</span>
+      <div className="payment-box">
+        <p className="payment-box__eyebrow">💳 Payment Details</p>
+        <div className="payment-box__rows">
+          <div className="payment-box__row">
+            <span className="payment-box__key">Bank</span>
+            <span className="payment-box__val">{PAYMENT_INFO.bankName}</span>
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ color: "rgba(255,255,255,0.45)" }}>Account No.</span>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <span style={{ color: "#fff", fontWeight: 700, fontSize: "1rem", letterSpacing: "0.05em" }}>
-                {PAYMENT_INFO.accountNumber}
-              </span>
+          <div className="payment-box__row">
+            <span className="payment-box__key">Account No.</span>
+            <div className="payment-box__acct-wrap">
+              <span className="payment-box__acct-num">{PAYMENT_INFO.accountNumber}</span>
               <button
                 type="button"
                 onClick={handleCopy}
-                style={{
-                  background: copied ? "rgba(39,174,96,0.3)" : "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  borderRadius: "6px",
-                  color: copied ? "#27AE60" : "rgba(255,255,255,0.6)",
-                  cursor: "pointer",
-                  fontSize: "0.72rem",
-                  fontWeight: 600,
-                  padding: "3px 8px",
-                  transition: "all 0.2s",
-                }}
+                className={`payment-box__copy-btn ${copied ? "payment-box__copy-btn--copied" : "payment-box__copy-btn--idle"}`}
               >
                 {copied ? "✓ Copied!" : "Copy"}
               </button>
             </div>
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ color: "rgba(255,255,255,0.45)" }}>Account Name</span>
-            <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 600 }}>{PAYMENT_INFO.accountName}</span>
+          <div className="payment-box__row">
+            <span className="payment-box__key">Account Name</span>
+            <span className="payment-box__val">{PAYMENT_INFO.accountName}</span>
           </div>
         </div>
-        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.75rem", marginTop: "12px", lineHeight: 1.5 }}>
-          Please transfer <strong style={{ color: "#FF6B00" }}>₦{total.toLocaleString()}</strong> and send your payment receipt after placing your order. Your order will be confirmed once payment is received.
+        <p className="payment-box__note">
+          Please transfer <strong>₦{total.toLocaleString()}</strong> and send your payment receipt after placing your order. Your order will be confirmed once payment is received.
         </p>
       </div>
     </div>
@@ -196,7 +162,7 @@ function MenuCard({ item, selected, onToggle, delay = 0 }) {
           className="menu-card__img"
           loading="lazy"
           onError={e => {
-            e.target.parentNode.style.background = "#1a1a1a";
+            e.target.parentNode.style.background = "#f5efe8";
             e.target.style.display = "none";
           }}
         />
@@ -220,7 +186,6 @@ function MenuCard({ item, selected, onToggle, delay = 0 }) {
         <div className="menu-card__price-badge">{item.price}</div>
       </div>
 
-      {/* Body */}
       <div className="menu-card__body">
         <div className="menu-card__name-row">
           <div className="menu-card__name">{item.name}</div>
@@ -233,7 +198,7 @@ function MenuCard({ item, selected, onToggle, delay = 0 }) {
           </span>
           <span
             className="menu-card__select"
-            style={{ color: selected ? item.color : "rgba(255,255,255,0.25)" }}
+            style={{ color: selected ? item.color : undefined }}
           >
             {selected ? "● Added" : "+ Select"}
           </span>
@@ -319,6 +284,30 @@ const HERO_ORBS = [
   { w: 380, h: 380, bg: "radial-gradient(circle,#E8B400,transparent 70%)", style: { top: "38%", left: "18%" },  animation: "orbMove3 14s ease-in-out infinite", opacity: 0.09 },
 ];
 
+// ── MOON / SUN ICONS ──────────────────────────────────────────────────────────
+function SunIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  );
+}
+function MoonIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  );
+}
+
 // ── MAIN APP ──────────────────────────────────────────────────────────────────
 export default function App() {
   const [menuTab, setMenuTab]       = useState("Food");
@@ -327,6 +316,7 @@ export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [submitStatus, setSubmit]   = useState(null);
   const [errors, setErrors]         = useState({});
+  const [darkMode, setDarkMode]     = useState(false);
   const [form, setForm] = useState({
     customerName: "", customerPhone: "", customerEmail: "",
     recipientName: "", recipientPhone: "",
@@ -342,6 +332,11 @@ export default function App() {
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  // Apply dark mode class to <html> so CSS variables cascade everywhere
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+  }, [darkMode]);
 
   const scrollTo = (ref) => {
     ref?.current?.scrollIntoView({ behavior: "smooth" });
@@ -454,9 +449,25 @@ export default function App() {
             ))}
           </div>
 
-          <button className="nav__cta" onClick={() => scrollTo(orderRef)}>
-            ORDER NOW
-          </button>
+          <div className="nav__right">
+            {/* ── DARK MODE TOGGLE ── */}
+            <button
+              className="theme-toggle"
+              onClick={() => setDarkMode(d => !d)}
+              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              aria-label="Toggle theme"
+            >
+              <span className="theme-toggle__track">
+                <span className="theme-toggle__thumb">
+                  {darkMode ? <MoonIcon /> : <SunIcon />}
+                </span>
+              </span>
+            </button>
+
+            <button className="nav__cta" onClick={() => scrollTo(orderRef)}>
+              ORDER NOW
+            </button>
+          </div>
 
           <button className="nav__mobile-btn" onClick={() => setMobileOpen(o => !o)}>
             {mobileOpen ? "✕" : "☰"}
@@ -470,6 +481,13 @@ export default function App() {
                 {label}
               </button>
             ))}
+            <button
+              className="theme-toggle theme-toggle--mobile"
+              onClick={() => setDarkMode(d => !d)}
+            >
+              {darkMode ? <SunIcon /> : <MoonIcon />}
+              <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>
+            </button>
           </div>
         )}
       </nav>
@@ -511,32 +529,16 @@ export default function App() {
       </section>
 
       {/* ── ZOETIC BRAND BANNER ── */}
-      <div style={{
-        background: "linear-gradient(135deg, rgba(255,107,0,0.08), rgba(255,107,0,0.03))",
-        borderTop: "1px solid rgba(255,107,0,0.15)",
-        borderBottom: "1px solid rgba(255,107,0,0.15)",
-        padding: "18px 24px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "16px",
-        flexWrap: "wrap",
-        textAlign: "center",
-      }}>
+      <div className="brand-banner">
         <img
           src={zoeticLogo}
           alt="Zoetic Foods & Drinks"
-          style={{ height: "52px", objectFit: "contain" }}
+          className="brand-banner__logo"
           onError={e => e.target.style.display = "none"}
         />
-        <p style={{
-          color: "rgba(255,255,255,0.75)",
-          fontSize: "0.9rem",
-          margin: 0,
-          lineHeight: 1.5,
-        }}>
-          <strong style={{ color: "#FF6B00" }}>Zamar Meals</strong> is a brand of{" "}
-          <strong style={{ color: "#fff" }}>Zoetic Foods &amp; Drinks</strong>
+        <p className="brand-banner__text">
+          <strong className="brand-banner__name">Zamar Meals</strong> is a brand of{" "}
+          <strong className="brand-banner__parent">Zoetic Foods &amp; Drinks</strong>
           {" "}— tasty · nourishing · energizing
         </p>
       </div>
@@ -560,43 +562,13 @@ export default function App() {
         </div>
 
         {currentItems.length === 0 ? (
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "72px 24px",
-            gap: "16px",
-            textAlign: "center",
-          }}>
-            <div style={{ fontSize: "3.5rem" }}>🥤</div>
-            <h3 style={{
-              color: "#FF6B00",
-              fontSize: "1.6rem",
-              fontWeight: 700,
-              margin: 0,
-            }}>Coming Soon!</h3>
-            <p style={{
-              color: "rgba(255,255,255,0.55)",
-              fontSize: "1rem",
-              maxWidth: "360px",
-              lineHeight: 1.7,
-              margin: 0,
-            }}>
+          <div className="empty-state">
+            <div className="empty-state__icon">🥤</div>
+            <h3 className="empty-state__title">Coming Soon!</h3>
+            <p className="empty-state__body">
               Our fresh juices are being prepared with love. Check back soon — something delicious is on the way! 🍋🍊🍍
             </p>
-            <div style={{
-              marginTop: "8px",
-              padding: "10px 28px",
-              border: "1.5px solid rgba(255,107,0,0.4)",
-              borderRadius: "999px",
-              color: "rgba(255,255,255,0.4)",
-              fontSize: "0.78rem",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-            }}>
-              Available Soon
-            </div>
+            <div className="empty-state__badge">Available Soon</div>
           </div>
         ) : (
           <div className="card-grid">
@@ -653,7 +625,7 @@ export default function App() {
               {/* Selected Items */}
               <div
                 className="selected-box"
-                style={{ border: `1.5px solid ${errors.items ? "#FF5555" : "rgba(255,255,255,0.06)"}` }}
+                style={{ borderColor: errors.items ? "#e03030" : undefined }}
               >
                 <div className="selected-box__header">
                   <span className="selected-box__label">
@@ -681,7 +653,7 @@ export default function App() {
                         key={i.id}
                         className="selected-chip"
                         onClick={() => toggleItem(i)}
-                        style={{ background: `${i.color}1a`, border: `1px solid ${i.color}44` }}
+                        style={{ background: `${i.color}22`, border: `1px solid ${i.color}55`, color: i.color }}
                       >
                         {i.name} <span className="selected-chip__x">×</span>
                       </span>
@@ -690,7 +662,6 @@ export default function App() {
                 )}
               </div>
 
-              {/* ── ORDER SUMMARY + PAYMENT ── */}
               <OrderSummary selected={selected} />
 
               <Divider label="Your Contact" />
@@ -798,9 +769,7 @@ export default function App() {
                 className="footer__logo"
                 onError={e => e.target.style.display = "none"}
               />
-              <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem", margin: "6px 0 8px", letterSpacing: "0.05em" }}>
-                A brand of Zoetic Foods &amp; Drinks
-              </p>
+              <p className="footer__brand-sub">A brand of Zoetic Foods &amp; Drinks</p>
               <p className="footer__tagline">
                 Real food, real nourishment. Premium Nigerian cuisine and fresh wholesome
                 drinks — made with love every day.
@@ -817,7 +786,7 @@ export default function App() {
                 <div key={val} className="footer__contact-item">
                   <span style={{ fontSize: "1rem", flexShrink: 0 }}>{icon}</span>
                   {href ? (
-                    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: "#25D366", textDecoration: "none", fontWeight: 700 }}>{val}</a>
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="footer__contact-link">{val}</a>
                   ) : (
                     <span>{val}</span>
                   )}
@@ -837,7 +806,7 @@ export default function App() {
             <span className="footer__copy">
               © {new Date().getFullYear()} Zamar Meals — A Brand of Zoetic Foods &amp; Drinks. All rights reserved.
             </span>
-            <span className="footer__made">Made with ❤️ </span>
+            <span className="footer__made">Made with ❤️</span>
           </div>
         </div>
       </footer>
